@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro %}
+
+{% block styles%}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+     
+
+     
+    <div class="container" style="font-family: 'Russo One', sans-serif">
+       
+
+      <div class="row" style="margin-top:30px">
+          {% if current_user.is_authenticated%}
+          <h1><u>Hello {{current_user.username}}</u></h1>
+        {% else %}
+          <h1><u>Hello stranger</u></h1>
+        {%endif%}
+
+        <h4 class="text-left"><a class="btn btn-success" href="/add/category"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Category</a></h4>
+          <form>
+        <div class="card" style="background-color:burlywood">
+          {{ macro.displayCategoryList(categories) }}
+        </div>
+          </form>
+        </div>
+{% endblock %}
+{% macro displayPitches(pitch_list) %}
+  {% for pitches in pitch_list %}
+    <div class="col-md-6">
+      <div class="well">
+        <div class="row">
+          <div class="col-md-6">
+              <h3>{{pitches.content}}</h3>
+          </div>
+           
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endmacro %}
+</div>
+ 
+ 
+ </style>
